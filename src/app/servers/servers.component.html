@@ -5,7 +5,24 @@
 <!-- <p>{{ serverName }}</p> -->
 <button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
 <!-- <p [innerText]="allowNewServer"></p> -->
-<p>{{ serverCreationStatus }}</p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName}}</p>
+<ng-template #noServer>
+    <p>No server was created.</p>
+</ng-template>
 <hr>
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>
+<hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary" (click)="onDetails()">Display Details</button>
+            <!--<button class="btn btn-primary" ((click)="showSecret = !showSecret")>Display Details<button>-->
+            <br>
+            <p *ngIf="showSecret">Bob Marley & Willie Nelson</p>
+            <div *ngFor="let item of log; let i = index" [ngStyle]="{backgroundColor: item || i >= 5 ? 'magenta' : 'lavender'}"
+                [ngClass]="{'white-text': item || i >=5}">{{ item }}</div>
+        </div>
+    </div>
+</div>

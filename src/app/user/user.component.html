@@ -1,8 +1,9 @@
 
 <label>USERNAME</label>
-<input type="text" class="form-control" [(ngModel)]="userName">
+<!-- <input type="text" class="form-control" [(ngModel)]="userName"> -->
+<input type="text" class="form-control" (input)="onUpdateUserName($event)">
 <br>
-<button class="btn btn-primary" (click)="onUserEntry()"> Enter </button>
+<button class="btn btn-primary" [disabled]="!allowNewUser"(click)="onUserEntry()"> Enter </button>
 <p>{{ welcomeMsg }}</p>
 <hr>
 

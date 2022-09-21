@@ -10,6 +10,7 @@ export class UserComponent implements OnInit {
   userName = '';
   userEntered = false;
   welcomeMsg = '';
+  allowNewUser = true;
 
   constructor() { }
 
@@ -19,12 +20,16 @@ export class UserComponent implements OnInit {
   onUserEntry() {
     if (this.userName == ''){
       alert('Please enter username.');
-      this.userEntered = false;
     }else{
       this.userEntered = true;
       this.welcomeMsg = 'Welcome ' + this.userName;
+      this.allowNewUser = true;
     }
 
+  }
+  onUpdateUserName(event: any){
+    console.log(event)
+    this.userName = (<HTMLInputElement>event.target).value;
   }
 
 }
